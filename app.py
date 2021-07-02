@@ -9,9 +9,10 @@ Example:
 import sys
 import fire
 import questionary
+import csv
 from pathlib import Path
 
-from qualifier.utils.fileio import load_csv
+from qualifier.utils.fileio import load_csv, save_csv
 
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
@@ -31,7 +32,8 @@ def load_bank_data():
         The bank data from the data rate sheet CSV file.
     """
 
-    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):").ask()
+    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):",
+        default="./data/daily_rate_sheet.csv", qmark="📂").ask()
     csvpath = Path(csvpath)
     if not csvpath.exists():
         sys.exit(f"Oops! Can't find this path: {csvpath}")
@@ -46,11 +48,11 @@ def get_applicant_info():
         Returns the applicant's financial information.
     """
 
-    credit_score = questionary.text("What's your credit score?").ask()
-    debt = questionary.text("What's your current amount of monthly debt?").ask()
-    income = questionary.text("What's your total monthly income?").ask()
-    loan_amount = questionary.text("What's your desired loan amount?").ask()
-    home_value = questionary.text("What's your home value?").ask()
+    credit_score = questionary.text("What's your credit score?", qmark="💳").ask()
+    debt = questionary.text("What's your current amount of monthly debt?", qmark="💸").ask()
+    income = questionary.text("What's your total monthly income?", qmark="💰").ask()
+    loan_amount = questionary.text("What's your desired loan amount?", qmark="🏦").ask()
+    home_value = questionary.text("What's your home value?", qmark="🏠").ask()
 
     credit_score = int(credit_score)
     debt = float(debt)
@@ -107,10 +109,41 @@ def save_qualifying_loans(qualifying_loans):
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
-    """
-    # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
 
+    Returns:
+        No return value. 
+        Application will exit if the user chooses not to write the CSV file.
+    """
+
+    if not qualifying_loans:
+        sys.exit("Sorry, there are no qualifying bank loans to save!")
+    
+    yes_prompt = "Yes, please!"
+    no_prompt = "No, thank you!"
+    answer = questionary.select("Do you wish to save the results as a CSV file?", 
+        choices =[yes_prompt, no_prompt], qmark="💾").ask()
+       
+    if answer == yes_prompt:
+        filename = questionary.text("Enter a filename", default="loan-details.csv", qmark="📄").ask()
+
+        # add missing file extension if required
+        if not filename.endswith(".csv"):
+            filename += ".csv"
+
+        # questionary.path provides UI for selecting directory
+        directory = questionary.path(f"Enter a directory to save {filename}", 
+            default="./data", qmark="📂").ask()
+
+        # questionary.path returns directory without trailing slash
+        csvpath = Path(f"{directory}{'/'}{filename}")
+
+        # write csv output using our helper function
+        save_csv(csvpath, qualifying_loans)
+        
+    else:
+        sys.exit("Thank you for using our loan qualifier application!")
+    
+    
 
 def run():
     """The main function for running the script."""
@@ -128,7 +161,6 @@ def run():
 
     # Save qualifying loans
     save_qualifying_loans(qualifying_loans)
-
 
 if __name__ == "__main__":
     fire.Fire(run)
