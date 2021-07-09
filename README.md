@@ -1,39 +1,68 @@
-# Project Title
+# Loan Qualifier Application
 
-Just after the title, introduce your project by describing attractively what the project is about and what is the main problem that inspires you to create this project or what is the main contribution for the potential user of your project.
+This is the command-line interface application that gets the applicant's financial information and determines which loans user qualifies for.
+
 
 ---
 
 ## Technologies
 
-Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
+This project leverages python 3.7 with the following packages:
+
+* sys- provides access to some variables used or maintained by the interpreter and to       functions that interact strongly with the interpreter
+
+* fire - for the command line interface, the run function
+
+* questionary - for interactive user prompts and dialogs
+
+* csv - for reading and writing CSV files
+
+* pathlib - for identifying a file 
+
+* os - for removing the test output file
 
 ---
 
 ## Installation Guide
+Before running the application install the following dependencies
 
-In this section, you should include detailed installation notes containing code blocks and screenshots.
-
----
-
-## Examples
-
-This section should include screenshots, code blocks, or animations showing how your project works.
+```python
+pip install fire
+pip install questionary
+pip install pytest
+```
 
 ---
 
 ## Usage
 
-This section should include screenshots, code blocks, or animations explaining how to use your project.
+To use the loan qualifier application simply clone the repository and run app.py
+
+```python
+python app.py
+```
+
+Upon launching the application you will be asked to enter a file path to the latest banking data, the default is set to ./data/daily_rate_sheet.csv
+
+![image1](image1.png)
 
 ---
 
-## Contributors
+## Examples
+![image2](image2.png)
 
-In this section, list all the people who contribute to this project; since you may want to be reached by recruiters or potential collaborators, include your contact e-mail, and optionally your LinkedIn or Twitter profile.
+---
+
+
+## Contributors
+Brought to you by Ksenia Gorska as part of the UC Berkeley Extension Bootcamp: UCB-VIRT-FIN-PT-06-2021-U-B-MW
+Ksenia Gorska
+e-mail: kseniagorska@icloud.com
+[linkedin:](https://www.linkedin.com/in/ksenia-gorska/)
+
 
 ---
 
 ## License
 
-When you share a project on a repository, especially a public one, it's important to choose the right license to specify others what they can and can not do with your source code and files. Use this section to include the licence you want to use.
+The MIT License
