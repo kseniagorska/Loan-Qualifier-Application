@@ -38,7 +38,6 @@ def save_csv(csvpath, csvdata):
         csvpath (Path): The csv file path.
         csvdata (List): The list of data to be written into CSV
        
-
     Returns:
       None
     """
