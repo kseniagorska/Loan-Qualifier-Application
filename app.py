@@ -32,7 +32,7 @@ def load_bank_data():
         The bank data from the data rate sheet CSV file.
     """
 
-    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):",
+    csvpath = questionary.text("Enter a file path to the latest banking data (.csv):",
         default="./data/daily_rate_sheet.csv", qmark="📂").ask()
     csvpath = Path(csvpath)
     if not csvpath.exists():
@@ -143,8 +143,6 @@ def save_qualifying_loans(qualifying_loans):
     else:
         sys.exit("Thank you for using our loan qualifier application!")
     
-    
-
 def run():
     """The main function for running the script."""
 
