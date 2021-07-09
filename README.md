@@ -44,14 +44,25 @@ python app.py
 
 Upon launching the application you will be asked to enter a file path to the latest banking data, the default is set to ./data/daily_rate_sheet.csv
 
-![image1](image1.png)
+![Command line usage example 1](images/cl-usage1.png)
 
 ---
 
 ## Examples
 *The example use of the Loan Qualifier Application from the CLI*
 
-![image2](image2.png)
+![Command line usage example 2](images/cl-usage2.png)
+
+---
+
+## Testing
+The loan qualifier application uses pytest for automated testing. Tests can be run using the Visual Studio Code built-in test-runner: 
+
+![Tests in VS Code](images/vs-code-test.png)
+
+Or using pytest on the command line:
+
+![Tests on Command line](images/cl-test.png)
 
 ---
 
