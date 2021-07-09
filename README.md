@@ -60,7 +60,7 @@ The loan qualifier application uses pytest for automated testing. Tests can be r
 
 ![Tests in VS Code](images/vs-code-test.png)
 
-Or using pytest on the command line:
+Or using pytest on the command line using `pytests tests` from the top-level project directory:
 
 ![Tests on Command line](images/cl-test.png)
 
