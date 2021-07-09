@@ -49,6 +49,8 @@ Upon launching the application you will be asked to enter a file path to the lat
 ---
 
 ## Examples
+*The example use of the Loan Qualifier Application from the CLI*
+
 ![image2](image2.png)
 
 ---
